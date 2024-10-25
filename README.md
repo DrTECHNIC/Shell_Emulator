@@ -33,16 +33,24 @@ pip install -U pytest
 ```
 # Команды
 ``` ls ``` - Список файлов и директорий
+
 ``` cd <path> ``` - Смена директории
+
 ``` exit ``` - Выход из эмулятора
+
 ``` touch <name> ``` - Создание файла
+
 ``` cat <path> ``` - Вывод содержимого файла
 # Тесты
 ## ls
-![]()
+![](https://github.com/DrTECHNIC/Shell_Emulator/blob/main/ls.png)
 ## cd
-![]()
+![](https://github.com/DrTECHNIC/Shell_Emulator/blob/main/cd.png)
 ## exit
-![]()
+![](https://github.com/DrTECHNIC/Shell_Emulator/blob/main/exit.gif)
+## touch
+![](https://github.com/DrTECHNIC/Shell_Emulator/blob/main/tou%D1%81%D1%80.png)
+## cat
+![](https://github.com/DrTECHNIC/Shell_Emulator/blob/main/cat.png)
 ## Общие тесты через pytest
-![]()
+![](https://github.com/DrTECHNIC/Shell_Emulator/blob/main/pytest.png)
