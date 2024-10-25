@@ -1,6 +1,7 @@
 from sys import argv
-from terminal import Terminal
 from tarfile import TarFile
+from application import Application
+from terminal import Terminal
 import json
 
 def main():
@@ -13,7 +14,7 @@ def main():
             username = data.get("username")
             filesystem_path = data.get("filesystem_path")
             with TarFile(filesystem_path, 'a') as file_system:
-                Terminal(username, file_system)
+                Application(Terminal(username, filesystem_path, file_system))
     except FileNotFoundError:
         print(f"Файл {config_file} не найден.")
     #else:
