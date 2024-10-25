@@ -21,7 +21,6 @@ class Application:
         self.input.bind("<Return>", self.read)
         self.terminal = terminal
         self.terminal.link(self)
-        self.root.mainloop()
 
     def read(self, event):
         line = self.input.get().strip()
@@ -41,6 +40,9 @@ class Application:
             self.output.insert(tk.END, f"{text}\n", color_tag)
         self.output.config(state=tk.DISABLED)
         self.output.see(tk.END)
+
+    def run(self):
+        self.root.mainloop()
 
     def exit(self):
         self.root.destroy()

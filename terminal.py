@@ -9,14 +9,15 @@ class Terminal:
         self.fs_path = fs_path
         self.filesystem = file_system
         self.path = ""
+        self.application = None
 
     def link(self, app: Application):
-        self.app = app
+        self.application = app
 
     def command_dispatcher(self, string):
         line = string.split()
         if line[0] == "exit":
-            self.app.exit()
+            self.application.exit()
         elif line[0] == "ls":
             self.ls(line[1:])
         elif line[0] == "cd":
@@ -28,14 +29,14 @@ class Terminal:
         elif line[0] == "cat":
             self.cat(line[1:])
         else:
-            self.app.print("Работа данной команды не предусмотрена в данном эмуляторе.", "error")
+            self.application.print("Работа данной команды не предусмотрена в данном эмуляторе.", "error")
 
     def ls(self, args):
         work_dir = self.path
         if len(args) > 0:
             work_dir = self.cd(args[-1])
             if work_dir is None:
-                self.app.print("", "command")
+                self.application.print("", "command")
         items = set()
         for item in self.filesystem.getnames():
             if item.startswith(work_dir):
@@ -43,7 +44,7 @@ class Terminal:
                 if "/" in ls_name:
                     ls_name = ls_name[:ls_name.index("/")]
                 items.add(ls_name)
-        self.app.print('\n'.join(sorted(filter(lambda x: len(x) > 0, items))), "command")
+        self.application.print('\n'.join(sorted(filter(lambda x: len(x) > 0, items))), "command")
 
     def cd(self, args):
         if len(args) == 0:
@@ -59,7 +60,7 @@ class Terminal:
                 if len(new_dir) > 0:
                     new_dir.pop()
                 else:
-                    self.app.print("Некорректный путь к директории.", "error")
+                    self.application.print("Некорректный путь к директории.", "error")
                     return
             else:
                 new_dir.append(arg)
@@ -69,7 +70,7 @@ class Terminal:
         for file in self.filesystem.getnames():
             if file.startswith(new_path):
                 return new_path
-        self.app.print("Директория с таким названием отсутствует.", "error")
+        self.application.print("Директория с таким названием отсутствует.", "error")
 
     def touch(self, args):
         if len(args) > 0:
@@ -79,16 +80,14 @@ class Terminal:
                 f = open(temp_file, "w")
                 f.close()
             except:
-                self.app.print("Не удалось создать файл", "error")
-                return
+                self.application.print("Не удалось создать файл.", "error")
             try:
                 self.filesystem.add(temp_file, self.path + filename)
             except:
-                self.app.print("Не удалось создать файл", "error")
-                return
+                self.application.print("Не удалось создать файл.", "error")
             remove(temp_file)
         else:
-            self.app.print("Не указано имя файла.", "error")
+            self.application.print("Не указано имя файла.", "error")
 
     def cat(self, params):
         with TarFile(self.fs_path, 'r') as file_system:
@@ -98,9 +97,9 @@ class Terminal:
                 file_path = self.path + file
                 if file_path in filesystem.getnames():
                     with filesystem.extractfile(file_path) as read_file:
-                        self.app.print(read_file.read().decode("UTF-8").replace('\r', ''), "command")
+                        self.application.print(read_file.read().decode("UTF-8").replace('\r', ''), "command")
                 else:
-                    self.app.print("Файл не найден в архиве", "error")
+                    self.application.print("Файл не найден в архиве", "error")
             except:
-                self.app.print("Неправильное название файла", "error")
+                self.application.print("Неправильное название файла", "error")
             filesystem.close()
