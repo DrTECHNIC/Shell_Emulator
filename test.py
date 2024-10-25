@@ -67,3 +67,13 @@ def test_cat_3(terminal):
 def test_touch_1(terminal, capfd):
     terminal.touch(["test.txt"])
     assert NoneType
+
+
+def test_touch_2(terminal, capfd):
+    terminal.touch(["test"])
+    assert NoneType
+
+
+def test_touch_3(terminal, capfd):
+    terminal.touch(["test.png"])
+    assert NoneType

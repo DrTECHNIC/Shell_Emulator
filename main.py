@@ -13,7 +13,8 @@ def main():
                 username = data.get("username")
                 filesystem_path = data.get("filesystem_path")
                 with TarFile(filesystem_path, 'a') as file_system:
-                    Application(Terminal(username, filesystem_path, file_system)).run()
+                    app = Application(Terminal(username, filesystem_path, file_system))
+                    app.run()
         except FileNotFoundError:
             print(f"Файл {config_file} не найден.")
     else:
