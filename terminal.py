@@ -34,7 +34,27 @@ class Terminal:
     def ls(self, args):
         work_dir = self.path
         if len(args) > 0:
-            work_dir = self.cd(args[-1])
+            work_dir = args[-1]
+            work_dir = work_dir.strip('/')
+            work_dir = work_dir.split('/')
+            new_dir = self.path[:-1].split('/')
+            if new_dir == [""]:
+                new_dir = []
+            for arg in work_dir:
+                if arg == "..":
+                    if len(new_dir) > 0:
+                        new_dir.pop()
+                    else:
+                        self.application.print("Некорректный путь к директории.", "error")
+                        work_dir = ""
+                else:
+                    new_dir.append(arg)
+            new_path = "/".join(new_dir) + "/"
+            if new_path == "/":
+                work_dir = ""
+            for file in self.filesystem.getnames():
+                if file.startswith(new_path):
+                    work_dir = new_path
             if work_dir is None:
                 self.application.print("", "command")
         items = set()
