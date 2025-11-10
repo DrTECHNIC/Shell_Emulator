@@ -43,14 +43,14 @@ pytest -v test.py
 ``` cat <path> ``` - Вывод содержимого файла
 # Тесты
 ## ls
-![](https://github.com/DrTECHNIC/Shell_Emulator/blob/main/ls.png)
+![](https://github.com/DrTECHNIC/Shell_Emulator/blob/main/public/ls.png)
 ## cd
-![](https://github.com/DrTECHNIC/Shell_Emulator/blob/main/cd.png)
+![](https://github.com/DrTECHNIC/Shell_Emulator/blob/main/public/cd.png)
 ## exit
-![](https://github.com/DrTECHNIC/Shell_Emulator/blob/main/exit.gif)
+![](https://github.com/DrTECHNIC/Shell_Emulator/blob/main/public/exit.gif)
 ## touch
-![](https://github.com/DrTECHNIC/Shell_Emulator/blob/main/tou%D1%81%D1%80.png)
+![](https://github.com/DrTECHNIC/Shell_Emulator/blob/main/public/touch.png)
 ## cat
-![](https://github.com/DrTECHNIC/Shell_Emulator/blob/main/cat.png)
+![](https://github.com/DrTECHNIC/Shell_Emulator/blob/main/public/cat.png)
 ## Общие тесты через pytest
-![](https://github.com/DrTECHNIC/Shell_Emulator/blob/main/pytest.png)
+![](https://github.com/DrTECHNIC/Shell_Emulator/blob/main/public/pytest.png)
